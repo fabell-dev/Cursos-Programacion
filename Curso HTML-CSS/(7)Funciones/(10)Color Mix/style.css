@@ -1,0 +1,5 @@
+.box{
+    background-color: color-mix(in srgb, color percentage, color percentage); 
+    /*srgb acepta valores hexad*/
+    /*Funcion para mezclar colores*/
+}

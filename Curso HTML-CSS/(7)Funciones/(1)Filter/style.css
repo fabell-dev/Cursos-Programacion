@@ -1,0 +1,23 @@
+
+.box{
+    backdrop-filter: blur(10px);
+    /*Le da el filtro al fondo y no a toda la caja */
+
+    filter:drop-shadow(10px 10px 10px black );
+    filter:blur(10px);
+    filter:brightness(10);      /* modifica el brillo */
+    filter:contrast(1);         /* modifica el brillo */
+
+    /* Funciona parecido pero saturate puede tener valores por encima de 1  */
+    filter:grayscale(1);        /* modifica el brillo */
+    filter:saturate(1);         /* modifica el brillo */
+
+    filter:hue-rotate(50deg);   /*Gira la paleta en la ruleta de HSL*/
+    filter:invert();            /*Invierte los colores va de [0 a 1]*/
+    filter:sepia();             /*Va de [0 a 1]*/
+
+    /*Se puede dar mas de un filtro con espacios se ejucaten en el orden en que los pongamos*/
+
+    filter: blur(10px) sepia() grayscale();
+
+}

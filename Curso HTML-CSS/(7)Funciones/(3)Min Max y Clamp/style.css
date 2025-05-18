@@ -1,0 +1,8 @@
+.box{
+
+    width: min(100px,100%);             /*Tomara el valor [minimo] de los 2 o mas valores que le pasemos*/
+    width: max(100px,100%);             /*Tomara el valor [maximo] de los 2 o mas valores que le pasemos*/
+
+    width: clamp(100px,50vh,1500px);    /*El Primer valor ser el [Min] el segundo el [valor ideal] y el ultimo el [Max]*/
+
+    /*Se puede usar no solo en el width en todo lo que llve medidas para hacer diseños adaptables y ahorrarse media queries*/}

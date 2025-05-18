@@ -1,0 +1,10 @@
+/* Sepraracion entre las celdas para evitar el uso de margin con colapso*/
+
+.gridbox{
+    display: grid;
+    column-gap: 50px;       /*La separacion entre columnas*/
+    row-gap:    10px;       /*La separacion entre filas*/
+    gap:        10px 50px   /*El [Primer] valor es el de las filas y el [Segundo] el de las columnas*/}
+
+
+/* Para que los elemetos tengan la misma separacion de los bordes que entre elementos(gap) se le da en la caja padre de padding la misma cantidad que tiene de [Gap] */

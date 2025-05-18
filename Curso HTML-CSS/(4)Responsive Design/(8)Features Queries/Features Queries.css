@@ -1,0 +1,9 @@
+/* Se crean distintos apartados de Css depende si puede usar una propiedad o no  */
+
+@supports (display:grid){
+    Body{
+        font-size: 40px;}}
+
+@supports not (display:grid){
+    Body{
+        font-size: 30px;} }

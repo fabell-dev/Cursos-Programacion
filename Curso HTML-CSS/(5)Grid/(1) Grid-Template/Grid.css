@@ -1,0 +1,10 @@
+/* Al crear un contenedor grid cada elemento que esta dentro pasa a ser una fila implicita
+En los grid elements No hay margin collapse osea si se la da 10 px de margin tendran 10 px cada uno y no la suma  */
+
+.gridbox{
+grid-template-columns:200px 200px;
+/*Estos valores determinaran la cantidad de columnas que se creen y el valor que le asignemos sera su (Whidth) */
+
+grid-template-rows:100px 100px;
+/*Estos valores determinaran la cantidad de filas que se creen y el valor que le asignemos sera su (Height) */
+}

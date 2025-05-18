@@ -1,0 +1,15 @@
+
+.caja_animada{
+    animation-range-start: normal; /*Determina en que momento [Empieza] la animacion*/ 
+    animation-range-end:   normal; /*Determina en que momento [Termina] la animacion*/
+    /*Normal es el valor por defecto*/
+
+    animation-range-start: contain 10%;       /*Cuando empieza a verse*/
+    animation-range-start: cover 10%;         /*Cuando la caja en altura esta contenida*/
+    animation-range-start: exit-crossing 10%; /*Cuando el borde de debajo toca la parte de encima de la pagina*/
+}
+
+/*
+Apoyarse en:[view progress timeline range visualizer]
+
+https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=cover&range-start-percentage=0&range-end-name=cover&range-end-percentage=100&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=reveal&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes*/

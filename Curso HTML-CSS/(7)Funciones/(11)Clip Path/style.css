@@ -1,0 +1,11 @@
+.box{
+    clip-path: circle(50% at 100px 100px);
+    /*El primer valor es el tamaño que tendra el radio del circulo luego de 50% se deformara y no sera perfecto*/
+    /*Luego del at el (primer) valor sera lo que se desplazara en el eje de las [X] y el (segundo) en el eje de las [Y]*/
+
+    clip-path: ellipse(30% 50% at 100px 100px);
+    /*Ovalo*/
+    /*El (primer) valor sera la distancia del centro a un lado y el (segundo) la distancia del centro a encima*/
+
+    /*---Apoyarse en clip path generator*/
+}

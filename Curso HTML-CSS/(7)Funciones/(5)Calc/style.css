@@ -1,0 +1,7 @@
+
+.box{
+    width: calc(100vh - 200px);
+    /*Se puede Sumar,Restas,Division,Multiplicacion */
+    /*En las sumas y restas se deben dejar espacios*/
+    /*Se pueden usar funciones adentro de funciones*/
+}

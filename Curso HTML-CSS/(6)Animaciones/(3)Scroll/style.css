@@ -1,0 +1,13 @@
+
+.caja_animada{
+
+    animation-timeline: scroll();/*Aqui se usara la barra de scroll de la pagina web para la animacion*/
+
+
+    /*----[Nota]: Se puede crear una barra de scroll personalizada para un contenedor y luego la animacion funcionara entorno a esa barra perzonalizada aqui abajo pongo todo lo necesario*/
+    scroll-timeline-axis:  block; 
+    scroll-timeline-name: --barra_perzonalizada; /*Aqui ira el Nombre de la barra y luego se pondra en animation-timeline */  
+    animation-timeline: --barra_perzonalizada;   /*Tiene dos parametros Block e Inline {Para especificar un eje en el que funcionara el scroll}*/
+
+    /*---Shorthand*/
+    scroll-timeline: --barra_perzonalizada block;}

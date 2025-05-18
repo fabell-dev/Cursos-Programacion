@@ -1,0 +1,8 @@
+.box{
+    scroll-behavior: smooth;          /*Controla la suavidad con la que va desde un enlace a otro en secciones de la misma pagina */
+    scrollbar-color: #48e #f44;  /*Controla el color de la barra de scroll el primer valor es el de la barrita y el otro es el fondo de la barra*/
+    scrollbar-width: auto;            /*Define el ancho de la barra y si esta o no tiene 3 valores*/
+
+    
+    /*Averiguar el scroll-snap*/
+}

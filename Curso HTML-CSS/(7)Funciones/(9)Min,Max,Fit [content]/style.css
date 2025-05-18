@@ -1,0 +1,5 @@
+.box{
+    width: min-content; /*Hace que la caja tenga el tamaño mas pequeño de acuerdo al contenido */
+    width: max-content; /*Hace que la caja tenga el tamaño mas grande de acuerdo al contenido*/
+    width: fit-content; /*Hace que la caja se adapte de acuerdo al contenido y a la situacion*/
+}

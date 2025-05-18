@@ -1,0 +1,11 @@
+/* ---Grid Autoflow:Dense--- */
+/* Se ocupa de rellenar los espacios en blacno que se puedan rellenar al redimensionar las celdas aunque no repete el orden*/
+
+.grid_box{
+    display: grid;
+    grid-auto-flow: dense;}
+
+.grid_item{
+    grid-column: span 3;
+    grid-row: span 2;}
+    

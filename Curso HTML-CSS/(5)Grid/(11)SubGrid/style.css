@@ -1,0 +1,13 @@
+.grid__box{
+    display: grid;
+    grid-template-columns: repeat(3,250px);
+    grid-template-rows: repeat(3,250px);}
+
+.grid__box:first-child{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;}
+
+
+/*Con esta propiedad los elementos que esten adentro de los grids pasan a ser parte de la grilla principal y a afectarla y afectarse por sus modificaciones*/

@@ -1,0 +1,20 @@
+/* 
+El valor auto se usa en las medidas de las columnas y las filas y lo que hace es que calcula el espacio que sobra (restandole el tamaño que ocupa el contenido) y lo divide entre las celdas que tengan el valor auto  */
+
+/* 
+El valor fr funciona parecido al flex-grow pero al contrario del auto solo varia su tamaño en caso de que el contenido de la celda sobrepase ese tamaño y se extendera achicando a las demas 
+Se le da valores númericos que luego se suman para dividir el espacio disponible y otorgarle partes equivalentes de ese espacio disponible a cada celda */
+
+
+
+.gridbox{
+grid-template-columns: auto auto auto;
+grid-template-rows: 2fr 3fr 2fr; }
+
+
+/* 
+EJ: 2fr 3fr 5fr 
+La primera celda tendra el (20%) del espacio disponible
+La segunda tendra el (30%) del espacio disponible
+Y la ultima el (50%) del espacio disponible
+*/

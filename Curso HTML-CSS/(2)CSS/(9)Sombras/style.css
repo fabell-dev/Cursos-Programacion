@@ -1,0 +1,14 @@
+.box{
+/*Para cajas*/
+box-shadow:20px 20px 20px 20px;
+
+/*1er valor sombras en el eje [X] ,(2do) valor sombras eje [Y],  (3er) valor difuminado,(4to) valor expansion del difuminado */
+
+/*Para letras*/
+text-shadow:20px 20px 20px black;
+
+/*Para imagenes*/
+filter:drop-shadow(20px 20px 20px #48e);
+
+/* Se pueden ponerr varias sombras si se separan por comas */
+box-shadow:20px 20px 20px #48e,20px 20px 20px #48e}

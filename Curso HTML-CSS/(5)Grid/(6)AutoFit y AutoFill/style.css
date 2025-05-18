@@ -1,0 +1,12 @@
+
+/* ---AutoFill y AutoFit-- */
+
+.gridbox{
+    display: grid;
+    grid-template-rows: repeat(auto-fill , minmax(150px,1fr));
+    /*[*]Deja celdas para nuevos elementos*/
+    /*Esta constantemente validando si en la resolucion en la que esamos puede entrar otra [columna] o [fila] y vuelve al espacio minimo y deja el espacio asignado*/
+
+
+    grid-template-columns: repeat(auto-fit , minmax(150px,1fr) );  
+    /*[*]Va reellenando */}

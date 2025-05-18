@@ -1,0 +1,18 @@
+/* El (Grid Explicito) es el que nosotros definimos con la propiedad grid.template */
+/* El (Grid Implicito) es las que se crean para rellenar el alto de la grilla en caso de que los elementos no quepan en las que estan creadas */
+
+/* ---GridAutoflow--- */
+
+.gridbox{
+    display: grid;
+    grid-auto-flow: column;}
+/* El valor Predeterminado de la propiedad es [rows]  */
+/* Este valor modifica el elemento que se creara cuando se cree una celda implicita */
+
+
+/* El (Grid Implicito) se controla con la propiedad [grid-autor-rows:] o [grid-autor-columns:] DEPENDE del valor de la propiedad [autoflow] */
+
+.gridbox{
+    display: grid;
+    grid-auto-rows: 100px;}
+/* Esto hara que cada celda que se cree tenga un [Whidth] o un [Height] depende si son filas o columnas de 100px*/

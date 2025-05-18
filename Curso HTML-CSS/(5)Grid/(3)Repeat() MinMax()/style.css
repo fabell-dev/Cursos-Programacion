@@ -1,0 +1,25 @@
+
+/* --Repeat--- */
+/* La funcion repeat requiere (2 valores) el [primero] la cantidad de veces que dse desea repetir y el [segundo] el valor que se va a repetir */
+
+.gridbox{
+    display: grid;
+    grid-template-columns:100px repeat(5,100px) 2fr;}
+/* Se puyede usar con valores a los costados */
+
+.gridbox{
+    display: grid;
+    grid-template-columns:repeat(5, 100px 200px);}
+/* Se pueden repetir patrones si no se separan los valores por coma EJ: */
+
+
+/* ---Minmax--- */
+.gridbox2{
+    display: grid;
+    grid-template-rows: minmax(200px 400px);}
+/* Esto le asignara un valor (1er)minimo y un valor (2do)maximo en las (columnas) sera el [Whidth] y en las (filas) el [Height] */
+
+.gridbox2{
+    display: grid;
+    grid-template-rows: minmax(repeat(4, minmax(100px,200px)));}
+/* Se puede Combinar la funcion Repeat() con la funcion Minmax() */

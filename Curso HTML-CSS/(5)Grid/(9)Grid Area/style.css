@@ -1,0 +1,27 @@
+/* Puede ser un shrothand que une las propiedades [grid column] y [grid row] */
+
+.grid_box{
+    display: grid;
+    grid-area: 1/span 2 1/span 3; 
+    /* 
+    [1er](Row-start) 
+    [2do](Column-Start) 
+    [3ro](Row-End)
+    [4to](Column-End)
+    */ }
+
+
+/* ---Grid-Template-Areas:--- */
+
+.grid_box{
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "nav    main   aside"
+    "footer footer footer" ;}
+    /* Aqui se modifica la estructura que tendra */
+    /*Tambien la cantidad de columnas*/
+
+.grid_item{
+    grid-area: header;}
+/*Luego se le da la seccion que ocupara a los elementos de la grilla*/

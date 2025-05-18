@@ -1,0 +1,5 @@
+/*Se tiene que usar obligado con la pseudo-clase firstletter*/
+
+.box::first-letter{
+    initial-letter:3 2 ; /*El primer valor es la cantidad de lineas que ocupara y el segundo es donde empezara*/
+}

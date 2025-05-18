@@ -1,0 +1,7 @@
+/* En el shorthand transition se puede poner la funcion steps y ira dando pasos para completar */
+
+.barra{
+    transition: width 1s steps(10);}
+
+@media(prefers-reduced-motion:reduce){}
+/*Esto se activa para los que reducen las animaciones del navegador*/

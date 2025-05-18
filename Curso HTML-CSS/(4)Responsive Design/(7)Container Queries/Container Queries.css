@@ -1,0 +1,17 @@
+/* Modifica las propiedades de un elemento en base a la variacion de sus medidas
+
+Primero debemos darle al contenedor la propiedad container-type
+-size(solamente tiene en cuenta las dimensiones en bloque y en linea)
+-inline-size(solo tiene en cuenta en linea)
+-normal (no podra considerarse un query container
+
+Container-name:(aqui se le da nombre al contenedor )
+Container-name:caja */
+
+@container(max-whidth:500px)
+    {body{
+        font-size:30px } }
+
+@container caja (max-whidth:200px){
+    body{
+        Font-size:50px}}

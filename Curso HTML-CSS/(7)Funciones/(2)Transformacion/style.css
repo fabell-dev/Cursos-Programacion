@@ -1,0 +1,20 @@
+
+.box{
+    scale: 1;                  /*Escala el tamaño del elemento si se pone un solo valor lo hace para los dos axis*/
+    transform: scaleX(1);      /*Escala la imagen solo en el eje [X]*/
+    transform: scaleY(1);      /*Escala la imagen solo en el eje [Y]*/
+    scale: 1 2;                /*El primer valor es para el eje [X] y el otro para el eje [Y]*/
+
+    transform: skew(20deg);    /*Modifica los angulos de la caja*/
+    transform: scaleX(20deg);
+    transform: scaleY(20deg);
+
+    rotate:(20deg);            /*Rota la caja*/
+    transform: rotateX(20deg);
+    transform: rotateY(20deg);
+
+    translate: 100px;        /*Desplaza el elemento*/
+    transform: translateX(50px);
+    transform: translateY(50px);
+    translate: 100px 100px;  /*El primer valor lo mueve en el eje [X] y el otro en el eje [Y]*/ 
+}

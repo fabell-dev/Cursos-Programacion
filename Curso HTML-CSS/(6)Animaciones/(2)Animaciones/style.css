@@ -1,0 +1,37 @@
+/* Declarar animacion */
+
+@keyframes nombre-animacion {
+
+    /*Tambien en vez de from y to se pueden usar porcerntajes*/
+    from{}
+    /* Aqui se ponen las propiedades que tendra cuando [inicie] la animacion */
+    to{}
+    /* Aqui se ponen las propiedades que tendra cuando [finalice] la animacion */}
+
+/*----Luego se le tiene que dar las propiedades al elemento que se quiere animar */
+.caja-animada{
+    animation-name: nombre-animacion;
+    animation-duration: 1s;
+    animation-duration: steps(8);    /*La cantidad de pasos en los uqe se completara la animacion*/
+    animation-delay: 3s;
+    /*Al delay se le puede dar valores negativos para que la animacion cuando inicia ya haya avanzado parte */
+
+
+    animation-fill-mode: backwards;     /*Se quedara con las propiedades que tenia en el estado de inicio */
+    animation-fill-mode:both;           /*Toma las propiedades del inicio de la animacion y se las establece al elemento antes que empiece la animacion y termina con las propiedades de su estado final */
+    animation-fill-mode:forwards;       /*Cambia sus propiedades cuando empiece la animacion y termina con las propiedades del final*/
+
+
+    animation-iteration-count: infinite;/*La repite infinitamente*/
+
+
+    animation-direction: reverse;               /*Las propiedades empiezan en to y terminan en from*/
+    animation-direction: alternate;             /*Empieza de from a to y vuelve de to a from */
+    animation-direction: alternate-reverse;     /*Funciona igual que alternate pero la primera aimacion empieza por el final*/
+
+
+    animation-timing-function: linear;          /*Comportamiento de la animacion*/
+
+
+    animation-play-state: running; /*Valor por defecto*/
+    animation-play-state: paused;  /*Pausa la animacion*/}

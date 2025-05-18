@@ -1,0 +1,17 @@
+.box{
+    /*Hay dos formas de declararlas*/
+    --variable_piola:#48e;
+    /*Al declararlas en una caja esa variable solo se podra usar en ese [Entorno]*/}
+
+@property --variable_fachera{
+    syntax: "<color>";          /*Valor que va a esperar number o color*/
+    inherits: false;            /*Si se heredara en false tendra un entorno local */
+    initial-value: #48e;      /*El valor inicial que tendra */  }
+
+
+.box{
+    color:var(--variable_piola) /*Asi se usan las variables*/}
+
+    
+/*Nota:Si una variable tiene un valor en el padre y se modifica ese valor en el hijo de ahi hacia abajo se usara el valor modificado*/
+

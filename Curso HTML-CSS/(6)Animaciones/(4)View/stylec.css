@@ -1,0 +1,9 @@
+
+.caja_animada{
+    animation-timeline: view();/*Animacion basada en cuando se ve el objeto*/
+
+    /*--[Nota:]Se puede dar la propiedad a otro elemento para que la propiedad empiece cuando se vea otro elemento sin necesidad que sea el animado*/
+
+    view-timeline: --animation block;
+    /*Si asignemos esta propiedad a otra caja la animacion se basara en la visualizacion de esta*/
+}

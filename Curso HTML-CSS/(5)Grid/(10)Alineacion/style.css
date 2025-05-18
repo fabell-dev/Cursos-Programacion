@@ -1,0 +1,16 @@
+/* 
+
+Justify-Self() Align-Self ()
+***(Se usa en los elementos hijos)
+
+***(Eje Horizontal)
+Justify-Items(Alinea los elementos en la Celda dentro de la Celda)
+Justufy-Content(Alinea la Celda en la caja Grid)
+
+***(Eje-Vertical)
+Align -Items(Alinea los elementos en la Celda dentro de la Celda)
+Align-Content(Alinea la Celda en la caja Grid) 
+
+***(Centrar elementos)
+Place-Content:center
+*/

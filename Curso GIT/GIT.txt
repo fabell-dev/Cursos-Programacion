@@ -1,0 +1,72 @@
+Comandos:
+-Git Status -s
+-Git Log --oneline:Muestra todos los commits con sus hash
+-Git Log --online -all:Muestra los conmits de todas las ramas.
+-Git Restore:Trae un archivo desde el area de preparacion al repositorio local
+-Git Checkout:Sobrescibe la informacion en el archivo local con la que tiene en el ultimo commit
+
+[GIT DIFF]
+-Git Diff <commit1> <commit2>:Muestra la diferencia entre dos Commits.
+Git Diff -staged:Muestra la diferencia entre el arhivo del commit y el que esta en el area de preparacion.
+-Git Diff --name-only <> <>:Muestra el nombre de los archivos modificados.
+-Git Diff --word-diff <> <>:Muestra las palabras que fueron cambiadas.
+
+[MODIFICAR COMMITS]
+-Git Commit --amend:Modifica el ultimo commit y sube todo lo que tengas en el area de preparacion al modificarlo. 
+-Git Rebase -i head~{numero que querermos retroceder}:Se utiliza para situarse y modificar un commit antiguo.Luego se usa el -amend y el continue
+-Git Rebase --continue
+
+[GIT RESET] (Modificar el puntero)
+-GIT RESET --soft <hash>:Elimina al que señalemos y lleva sus archivos al area de staging (se mantienen los archivos que estaban previamente ahi ) y si ya hay archivos con el mismo nombre los sobrescribe .
+-GIT RESET --mixed <hash>:Limpia el area de staging y no hace cambios en el area de trabajo (creo) 
+-GIT RESET --hard <hash>:Toma los archivos del commit al que señalemos y sobrescribe los del area de trabajo que coincidan con el contenido de los que tenia ese commit.
+
+Tambien en vez del hash se puede poner head~1:Lo posiciona 1 por detras del head.
+
+[[RAMAS]]
+
+-Git Branch:Muestra las ramas 
+-Git Branch nueva-rama:Crea una (nueva rama).
+-Git Switch <rama>:Cambiar de rama.
+-GIT Switch -c <rama-nueva>:Crea y se situa en la nueva rama.
+-Git Branch -d <rama-eliminada>:Elimina la rama(No se puede estar en esa rama al borrarla).
+-Git Branch-m <> <>:Si se quiere modificar el nombre de la rama actual solo se pone un campo.Si se quiere modificar el nombre de otra rama primero se pone en el primer campo el nombre de la rama que querramos modificar y luego el nombre nuevo.
+
+[MERGE]
+
+-Git Merge <>:Se debe poner el comando desde la rama a la qie se quiere que fusione por ejemplo ponerlo en la master y en el comando rama-sec 
+
+Si se quieren desfusionar se debe hacer un reset hard al commit anterior de la rama mastr (esto eliminara la fusion pero no eliminara los commits de la rama secundaria )
+
+[GIT IGNORE]
+-Se debe subir al repositorio un .gitignore
+-Se debe editar en vscode los archivos o tipos de texto que se quiere ignorar 
+--*.txt(ignorara todos los archivos txt)
+--!readme.txt (El símbolo de exclamación le dira que no ignore a el archivo que escribamos debe ir debajo si el tipo de archivo esta ignorado)
+--Fotos/ (esto le dira que ignore todo el contenido de la carpeta Fotos 
+
+[GIT IGNORE GLOBAL]
+Git Config --global core.excludesfile <ruta>
+
+[ALIAS]
+Git Config --global alias.<nombre-alias> "Comando" en el comando se excluye el git del inicio
+
+[REFLOG]
+Registro de todas las direcciones y hash a las que apunto el cursor
+
+[[BUENAS PRACTICAS]]
+-Crear gitignore
+-Usar ramas para un unico objetivo 
+-Usar nombres descriptivos y con kebap-case
+-Probar antes de Hacer el Pull Request
+-No trabajar sobre la rama main trabajar en las ramas secundarias y luego fusionar
+-No hacer commits muy seguidos hacerlos cuando se termine de implementar algo.
+-Usar etiquetas para commits importantes
+
+[Proximos Pasos]
+-Git Stash
+-Git Cherry-Pick
+-Rebase y Squash
+-Bisect
+-Hooks
+-Estudiar metodologias Git Flow y Git HubFlow

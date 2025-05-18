@@ -1,0 +1,18 @@
+
+/*-----Pseudo-elementos*/
+
+input::placeholder{color: aliceblue;} /*Modifica el Placeholder*/
+
+li::before{content:'';} /*Crea un contenido inmodificable delante del elemento*/
+
+li::after {content:'';} /*Crea un contenido inmodificable al final del elemento*/
+
+h1::first-letter{color: aliceblue;}  /*Primera Letra*/
+
+p::first-line{color: aliceblue;}    /*Primera Linea*/
+
+p::selection{color: aliceblue;}     /*Modifica la Selccion(Pordefecto es fondo azul y letras blancas)*/
+
+dialog::backdrop{color: aliceblue;} /*Modifica el fondo de la ventana modal */
+
+li::marker {content: "+";}            /*Modifica los elementos delante de los Li y Summary*/

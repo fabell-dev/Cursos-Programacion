@@ -1,0 +1,17 @@
+/* No poner imagenes directamente en las [Grillas] ponerlas dentro de un div o usar la imagen como el fondo del div  */
+.grid_item{
+    grid-column-start: 1; /*Esta propiedad dicta en que linea de columna[vertical] (Empieza) la celda*/
+    grid-row-start: 1;    /*Esta propiedad dicta en que linea de fila[horizontal] (Empieza) la celda*/
+    /*[*]Si se modifica esta propiedad se cambiara el lugar donde empieza el elemento*/
+
+    grid-column-end: 3;   /*Esta propiedad dicta en que linea de columna[vertical] (Termina) la celda*/
+    grid-row-end: 3;      /*Esta propiedad dicta en que linea de fila[horizontal] (Termina) la celda*/
+
+    grid-row-end: span 2; /*Esto indica que ocupara [2 rows mas]*/
+
+    /*---Shorthand---*/
+    grid-column:1/span 2 ;      
+    grid-row: 1/span 2;
+    /*El primer valor es el de [inicio] y el segundo el de [final]*/
+}
+
