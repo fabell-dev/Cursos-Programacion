@@ -2,11 +2,11 @@
 //  (2851 + 1890)/100
 
 //Concatenacion
-var x='Arroz'+10+'Azucar';
+var x='Arroz' +' '+10+' '+'Azucar';
 
 //Interpolacion ${Insertar}
 var y=`Arroz ${10} ${'Azucar'}`
+//Se usan comillas invertidas ` para interpolacion
 
+console.log(x);
 console.log(y);
-
-Math.round(x); //Redondear
