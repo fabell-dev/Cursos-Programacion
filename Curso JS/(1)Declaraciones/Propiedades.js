@@ -1,6 +1,7 @@
-//---Propiedades Bulit In
 
-//----String
+//?Propiedades Bulit In
+
+//!String
 
 console.log("Hello".length); //Cuenta la cantidad de caracteres del string y retorna ese valor 
 console.log("Hello".toUpperCase()); //Convierte el string a mayusculas y retorna el nuevo string
@@ -22,7 +23,9 @@ console.log("Hello".padStart(10, " ")); //Rellena el string con espacios al prin
 console.log("Hello".padEnd(10, " ")); //Rellena el string con espacios al final hasta que tenga la longitud que se le pasa como parametro, si no se pone el segundo parametro, rellena con espacios
 console.log("Hello".localeCompare("Hello")); //Compara dos strings y retorna 0 si son iguales, -1 si el primer string es menor que el segundo, 1 si el primer string es mayor que el segundo
 
-//----Array
+
+
+//!Array
 
 console.log([1, 2, 3].length); //Cuenta la cantidad de elementos del array y retorna ese valor
 console.log([1, 2, 3].toString()); //Convierte el array a un string y retorna el nuevo string
@@ -46,7 +49,9 @@ console.log([1, 2, 3].includes(2)); //Retorna true si el elemento se encuentra e
 console.log([1, 2, 3].findIndex(x => x > 1)); //Retorna la posicion del primer elemento que cumpla la condicion que se le pasa como parametro, si no encuentra ninguno retorna -1
 console.log([1, 2, 3].flat()); //Aplana el array 
 
-//---Object 
+
+
+//!Object 
 
 console.log(Object.keys(objeto)); //Retorna un array con las claves del objeto
 console.log(Object.values(objeto)); //Retorna un array con los valores del objeto

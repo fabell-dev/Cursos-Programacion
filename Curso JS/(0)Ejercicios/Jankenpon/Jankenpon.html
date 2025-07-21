@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jankenpon</title>
+</head>
+<body>
+
+    <main>
+        <div onload="" class="Select_Section">
+            <img class="img" src="Piedra.png" onclick="movep = 'Piedra'; playgame(pickmove(), movep);"></img>
+            <img class="img" src="Papel.png" onclick="movep = 'Papel'; playgame(pickmove(), movep);" ></img>
+            <img class="img" src="Tijera.png" onclick="movep = 'Tijera'; playgame(pickmove(), movep);"></img>
+            <button class="Rdom" onclick="movep = 'Random'; playgame(pickmove(), movep);">?</button>
+        </div>
+        <div class="Display_Section">
+            <div id="message"></div>
+            <p id="result">Selecciona Tu Jugada</p>
+        </div>
+        <div class="Stats_Section">
+            <div id="stats">
+                <p>Victorias: <span id="wins"></span></p>
+                <p>Derrotas: <span id="losses"></span></p>
+                <p>Empates: <span id="ties"></span></p>
+            </div>
+            <button class="reset" onclick=reset();>Reset Stats</button>
+        </div>
+    </main>
+    <script src="Jankenpon.js"></script>
+    
+</body>
+</html>
