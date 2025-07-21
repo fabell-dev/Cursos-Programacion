@@ -7,6 +7,9 @@ let estad=localStorage.getItem("estadisticas") ? JSON.parse(localStorage.getItem
 const mensaje = document.getElementById("message");
 const resultado = document.getElementById("result");
 
+let flag=false;
+let interval;
+
 function pickmove() {
 
     let number = Math.random();
@@ -75,6 +78,21 @@ function loadScreen(){
     document.getElementById("ties").innerHTML = `${estad.ties}`;
 }
 
+
+function autoplay(){
+    if(!flag){
+        interval=setInterval(function(){
+            let movep = pickmove();
+            let movec = pickmove();
+            playgame(movep,movec)
+        },500);
+        
+        flag=true;}
+    else{
+        clearInterval(interval);
+        flag=false;}
+}
+    
 loadScreen();
 
 
