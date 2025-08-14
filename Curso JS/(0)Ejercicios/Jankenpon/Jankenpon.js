@@ -6,10 +6,12 @@ let estad=localStorage.getItem("estadisticas") ? JSON.parse(localStorage.getItem
 };
 const mensaje = document.getElementById("message");
 const resultado = document.getElementById("result");
+const aplbtn =document.querySelector(".autoplay")
 
 let flag=false;
 let interval;
 
+//! Choose a Move
 function pickmove() {
 
     let number = Math.random();
@@ -27,6 +29,7 @@ function pickmove() {
     return move;
 }
 
+//! Play the Game
 function playgame(p1, p2) {
 
     let result="";
@@ -62,13 +65,38 @@ function playgame(p1, p2) {
     resultado.innerHTML = result;
 }
 
-function reset() {
+function autoplay(){
+    if(!flag){
+        aplbtn.innerHTML ="Stop Playing"
+        interval=setInterval(()=>{
+            let movep = pickmove();
+            let movec = pickmove();
+            playgame(movep,movec)
+        },500);
+        
+        flag=true;}
+    else{
+        aplbtn.innerHTML ="Autoplay"
+        clearInterval(interval);
+        flag=false;}
+}
+
+//! Reset Stats
+function resetask() {
+    resultado.innerHTML=`Seguro?
+    <button onclick=reset("yes")>Si</button>
+    <button onclick=reset("no") >No</button>`
+}
+function reset(param) {
+    if(param==="yes"){
     estad = { wins: 0, losses: 0, ties: 0 };
     alert("Juego reiniciado");
     loadScreen();
+    }
+    else{loadScreen();}
 }
 
-
+//! Main Function
 function loadScreen(){
     localStorage.setItem("estadisticas", JSON.stringify(estad));
 
@@ -79,20 +107,17 @@ function loadScreen(){
 }
 
 
-function autoplay(){
-    if(!flag){
-        interval=setInterval(function(){
-            let movep = pickmove();
-            let movec = pickmove();
-            playgame(movep,movec)
-        },500);
-        
-        flag=true;}
-    else{
-        clearInterval(interval);
-        flag=false;}
-}
-    
+//! Events Listeners
+aplbtn.addEventListener('click',()=>{autoplay();})
+
+document.body.addEventListener('keydown', (event) => {
+    if(event.key ==="a"){autoplay();}
+    if(event.key ==="r"){playgame("Piedra",pickmove())}
+    if(event.key ==="p"){playgame("Papel",pickmove())}
+    if(event.key ==="t"){playgame("Tijera",pickmove())}
+    if(event.key ==="Backspace"){reset()}
+})
+
 loadScreen();
 
 

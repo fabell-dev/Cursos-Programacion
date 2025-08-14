@@ -10,9 +10,21 @@ let objeto = {
     },   //*Por alguna razon alguien penso que era buena idea crear objetos dentro de objetos
          //*Se accederia asi objeto.object.propiedad1 --HUH--
 
+    
     funcion: function funcionEjemplo() {
-        console.log("Hola, soy una funcion dentro de un objeto");}
-    };
+        console.log("Hola, soy una funcion dentro de un objeto");},
+        //*Modo Base
+    metodo2:() =>{
+        console.log("a");},
+        //*Modo Flecha
+        
+    metodo3(){
+        console.log("a");}
+        //*Shorthand BEST OPTION
+
+}
+
+    
 
 console.log(objeto)
 console.log(objeto.nombre)    //*Primera forma

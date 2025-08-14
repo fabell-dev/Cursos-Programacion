@@ -14,7 +14,7 @@
             <img class="img" src="Papel.png" onclick="movep = 'Papel'; playgame(pickmove(), movep);" ></img>
             <img class="img" src="Tijera.png" onclick="movep = 'Tijera'; playgame(pickmove(), movep);"></img>
             <button class="Rdom" onclick="movep = 'Random'; playgame(pickmove(), movep);">?</button>
-            <button  onclick="autoplay()">Autoplay</button>
+            <button onkeydown="play(event)" class="autoplay">Autoplay</button>
         </div>
         <div class="Display_Section">
             <div id="message"></div>
@@ -26,7 +26,7 @@
                 <p>Derrotas: <span id="losses"></span></p>
                 <p>Empates: <span id="ties"></span></p>
             </div>
-            <button class="reset" onclick=reset();>Reset Stats</button>
+            <button class="reset" onclick=resetask();>Reset Stats</button>
         </div>
     </main>
     <script src="Jankenpon.js"></script>

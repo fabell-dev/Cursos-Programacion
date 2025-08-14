@@ -24,27 +24,6 @@ h1.classList.add('Agregando una clase');
 h1.classList.remove('Removiendo una clase');
 
 
-//!Manejar eventos en JavaScript
-//Los eventos son acciones que ocurren en el navegador, como hacer click, presionar una tecla, etc.
-//Ejemplo
-
-onkeydown="VerTecla(event)"; //Esto se usa en HTML para llamar a una funcion cuando se presiona una tecla
-
-
-
-//Para manejar eventos, se pueden usar los siguientes métodos:
-//Distintos tipos de Evento
-
-onclick         //*Al hacer un click
-onkeydown       //*Al presionar una tecla
-onscroll        //*Al desplazar la barra de desplazamiento
-onchange        //*Al cambiar el valor de un elemento
-onmouseenter    //*Al pasar el mouse por encima
-onmouseleave    //*Al quitar el mouse de encima
-onfocus         //*Al hacer foco en un elemento
-onblur          //*Al quitar el foco de un elemento
-onload          //*Al cargar la pagina
-
 
 //Esto es Un comentario
 //* Esto es Un comentario
