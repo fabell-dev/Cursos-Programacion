@@ -2,7 +2,6 @@ export const cart = localStorage.getItem("cart")  ? JSON.parse(localStorage.getI
 
 export function addItem(productId,productName,quantity,productImage,productPrice){
     let matchingItem;
-
     cart.forEach((item) => {
             if (productId === item.productId) {
             matchingItem = item;
@@ -13,14 +12,13 @@ export function addItem(productId,productName,quantity,productImage,productPrice
         else {cart.push({productId,productName,quantity,productImage,productPrice});}
     }
 
-export function updateQuantity(productId){
-    let cartQuantity = 0;
 
-    cart.forEach((item) => {
-        cartQuantity += item.quantity;
-    });
-    document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
+
+export function updateQuantity(productId){
+    let cartQuantity = cart.length;
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+    //? Esto es solo Estetico
 
         if(productId.length>1){
         document.querySelector(`.added-${productId}`).style.opacity ="1";
@@ -28,6 +26,4 @@ export function updateQuantity(productId){
             document.querySelector(`.added-${productId}`).style.opacity ="0";
         },2000);
         }
-
-    
 }

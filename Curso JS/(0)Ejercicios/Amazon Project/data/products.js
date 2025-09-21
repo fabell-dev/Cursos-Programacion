@@ -661,9 +661,14 @@ export const products = [
 
 export function loadProducts(cartP){
   let orderP = '';
-cartP.forEach((product) => {
+
+  let price=0;
+  let shipping =499/100; Number(shipping)
+  let total=0; let totaltax=0;
+
+cartP.forEach((product,index) => {
 orderP += `
-<div class="cart-item-container">
+    <div class="cart-item-container">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -677,15 +682,15 @@ orderP += `
                   ${product.productName}
                 </div>
                 <div class="product-price">
-                  $${(product.productPrice/100)*product.quantity}
+                  $${((product.productPrice/100)*product.quantity).toFixed(2) }
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${product.quantity}</span>
+                    Quantity: <input type="number" class="quantity-label quantity-label-${product.productId}" value="${product.quantity}"></input>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <button class="link-${product.productId} update-quantity-link link-primary" data-product-id="${product.productId}">
                     Update
-                  </span>
+                  </button>
                   <button class="delete-quantity-link link-primary" data-product-id="${product.productId}">
                     Delete
                   </button>
@@ -739,6 +744,51 @@ orderP += `
             </div>
           </div>
 `;
+
+//Calculo de Precios iterados
+price+=((Number(cartP[index].productPrice))/100)*Number(cartP[index].quantity);
+total=Number(price)+shipping;
+totaltax=(total*0.1);
+
+
+if(cartP.length-1===index){
+  orderP+=`<div class="payment-summary">
+          <div class="payment-summary-title">
+            Order Summary
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Items (3):</div>
+            <div class="payment-summary-money">$${price.toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Shipping &amp; handling:</div>
+            <div class="payment-summary-money">$${shipping.toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">$${total.toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Estimated tax (10%):</div>
+            <div class="payment-summary-money">$${totaltax.toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">$${(Number(totaltax)+total).toFixed(2)}</div>
+          </div>
+
+          <button class="place-order-button button-primary">
+            Place your order
+          </button>
+        </div>
+  `
+}
+
 });
 document.querySelector(".order-summary").innerHTML = orderP;
 
@@ -755,9 +805,68 @@ document.querySelectorAll('.delete-quantity-link')
         localStorage.setItem("cart",JSON.stringify(cartP));
         cartP = JSON.parse(localStorage.getItem("cart"));
         loadProducts(cartP);
+        loadHeader(cartP)
+        
+      });
+    }
+  );
+  
+  document.querySelectorAll('.update-quantity-link')
+    .forEach((button,index) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId 
+        let quantity =  Number(document.querySelector(`.quantity-label-${productId}`).value)
+        
+        cartP[index].quantity =quantity;
+        if(quantity===0){cartP.splice(index,1)}
+        localStorage.setItem("cart",JSON.stringify(cartP));
+        loadProducts(cartP)
+        loadHeader(cartP)
         
       });
     }
   );
 
+
 }
+
+  export function loadHeader(cartP){
+  let itemsNumber=cartP.length
+  let headerP = ``;
+
+    if(itemsNumber===0){
+      document.querySelector('main').classList.remove('main-full-cart')
+      document.querySelector('main').classList.add('main-empty-cart')
+
+      headerP=`<a href="amazon.html" class="link-empty-cart">Buy Some Items</a>`
+      
+      document.querySelector('main')
+        .innerHTML=headerP   
+    }
+    else{document.querySelector('main').classList.add('main-full-cart')}
+
+
+headerP = `
+      <div class="checkout-header">
+      <div class="header-content">
+        <div class="checkout-header-left-section">
+          <a href="amazon.html">
+            <img class="amazon-logo" src="images/amazon-logo.png">
+            <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
+          </a>
+        </div>
+
+        <div class="checkout-header-middle-section">
+          Checkout (<a class="return-to-home-link"
+            href="amazon.html">${itemsNumber} items</a>)
+        </div>
+
+        <div class="checkout-header-right-section">
+          <img src="images/icons/checkout-lock-icon.png">
+        </div>
+      </div>
+    </div>
+`;
+
+document.querySelector('.checkout-header').innerHTML = headerP;
+  }
