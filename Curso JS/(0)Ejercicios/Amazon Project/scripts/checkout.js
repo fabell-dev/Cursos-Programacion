@@ -16,30 +16,7 @@
 
 
   function loadCartProducts(cartP){
-  
   let orderP = ``;
-  let paymP  = ``;
-
-  //?Shipping
-  let flag1 = "";
-  let flag2 = "";
-  let flag3 = "";
-  let shipping =  JSON.parse(localStorage.getItem("shipping"))
-  if(     shipping === 0)   {flag1='checked'}
-  else if(shipping === 4.99){flag2='checked'}
-  else if(shipping === 9.99){flag3='checked'}
-
-  //?Price
-  let priceItems=0;
-  let Tax=0;
-  let priceItemsWTax=0;
-  cartP.forEach((product,index) => {
-    priceItems+=(Number(cartP[index].productPrice) * Number(cartP[index].quantity)  );
-  })
-
-  //?Matematicas
-  Tax = priceItems*0.1;            //Valor de el impuesto
-  priceItemsWTax = priceItems+Tax; //Valor con Impuesto
 
 cartP.forEach((product,index) => {
 orderP += `
@@ -73,7 +50,56 @@ orderP += `
           
 `;
 
-if(cartP.length-1===index){
+});
+document.querySelector(".order-summary").innerHTML = orderP;
+
+  document.querySelectorAll('.delete-quantity-link')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId 
+
+        cartP.forEach((value,index)=>{
+          if(value.productId===productId){cartP.splice(index,1)}
+        })
+        
+        localStorage.setItem("cart",JSON.stringify(cartP));
+        cartP = JSON.parse(localStorage.getItem("cart"));
+        loadPage(cartP);
+        
+      });
+    }
+  );
+  document.querySelectorAll('.update-quantity-link')
+    .forEach((button,index) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId 
+        let quantity =  Number(document.querySelector(`.quantity-label-${productId}`).value)
+        
+        cartP[index].quantity =quantity;
+        if(quantity===0){cartP.splice(index,1)}
+        localStorage.setItem("cart",JSON.stringify(cartP));
+        loadPage(cartP);
+      });
+    }
+  );
+
+  }
+
+
+  function loadPayment(cartP){
+    let paymP  = ``;
+    let shipping = loadShipping(); // !ojo
+
+    //?Price
+  let priceItems=0;
+  let Tax=0;
+  let priceItemsWTax=0;
+
+
+  cartP.forEach((product,index) => {
+    priceItems+=(Number(cartP[index].productPrice) * Number(cartP[index].quantity));
+
+    if(cartP.length-1===index){
   paymP+=`
   <div class="payment-summary">
           <div class="payment-summary-title">
@@ -109,9 +135,32 @@ if(cartP.length-1===index){
             Place your order
           </button>
         </div>
+  `
+}
 
-        <div class="delivery-options">
-                <div class="delivery-options-title">
+  })
+
+  //?Matematicas
+  Tax = priceItems*0.1;            //Valor de el impuesto
+  priceItemsWTax = priceItems+Tax; //Valor con Impuesto
+
+  document.querySelector(".payment-summary").innerHTML = paymP;
+  }
+
+  function loadShipping(cartP){
+  let shiP =``;
+  
+    //?Shipping
+  let flag1 = "";
+  let flag2 = "";
+  let flag3 = "";
+  let shipping =  JSON.parse(localStorage.getItem("shipping"))
+  if(     shipping === 0)   {flag1='checked'}
+  else if(shipping === 4.99){flag2='checked'}
+  else if(shipping === 9.99){flag3='checked'}
+
+
+  shiP=`<div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
                 <div class="delivery-option">
@@ -154,46 +203,9 @@ if(cartP.length-1===index){
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-  `
-}
+        </div>`
 
-});
-document.querySelector(".order-summary").innerHTML = orderP;
-document.querySelector(".payment-delivery-summary").innerHTML = paymP;
-
-  document.querySelectorAll('.delete-quantity-link')
-    .forEach((button) => {
-      button.addEventListener('click', () => {
-        const productId = button.dataset.productId 
-
-        cartP.forEach((value,index)=>{
-          if(value.productId===productId){cartP.splice(index,1)}
-        })
-        
-        localStorage.setItem("cart",JSON.stringify(cartP));
-        cartP = JSON.parse(localStorage.getItem("cart"));
-        loadCartProducts(cartP);
-        loadHeader(cartP)
-        
-      });
-    }
-  );
-  document.querySelectorAll('.update-quantity-link')
-    .forEach((button,index) => {
-      button.addEventListener('click', () => {
-        const productId = button.dataset.productId 
-        let quantity =  Number(document.querySelector(`.quantity-label-${productId}`).value)
-        
-        cartP[index].quantity =quantity;
-        if(quantity===0){cartP.splice(index,1)}
-        localStorage.setItem("cart",JSON.stringify(cartP));
-        loadCartProducts(cartP)
-        loadHeader(cartP)
-      });
-    }
-  );
+  document.querySelector(".delivery-options").innerHTML = shiP;
 
   document.querySelectorAll('.delivery-option-input')
     .forEach((button) => {
@@ -206,19 +218,24 @@ document.querySelector(".payment-delivery-summary").innerHTML = paymP;
         else if(value === '3'){shipping = 9.99}
         
         localStorage.setItem("shipping",(shipping))    
-        
-        loadCartProducts(cartP)
-        loadHeader(cartP)
+        loadPage(cartP);
+
       });
     }
   );
+  
+  return shipping;
+  
 
   }
 
 
   function loadPage(cartP) {
-
-  loadCartProducts(cartP);
   loadHeader(cartP)
+  loadCartProducts(cartP);
+  loadPayment(cartP);
+  loadShipping();
   }
+  
+
   
