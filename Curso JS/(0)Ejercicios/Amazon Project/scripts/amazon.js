@@ -63,13 +63,14 @@ updateQuantity("1");
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      const {productId} = button.dataset  
-      const {productName} = button.dataset
-      const {productImage} = button.dataset 
-      const {productPrice} = button.dataset 
+      const {productId} = button.dataset;
+      const {productName} = button.dataset;
+      const {productImage} = button.dataset; 
+      const {productPrice} = button.dataset;
+      const productShiping = 0;
       let quantity =  Number(document.querySelector(`.js-selector-${productId}`).value);      
 
-      addItem(productId,productName,quantity,productImage,productPrice);
+      addItem(productId,productName,quantity,productImage,productPrice,productShiping);
       updateQuantity(productId);
       localStorage.setItem("cart",JSON.stringify(cart))
       

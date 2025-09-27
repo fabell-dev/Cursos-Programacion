@@ -76,7 +76,7 @@ document.querySelector(".order-summary").innerHTML = orderP;
         let quantity =  Number(document.querySelector(`.quantity-label-${productId}`).value)
         
         cartP[index].quantity =quantity;
-        if(quantity===0){cartP.splice(index,1)}
+        if(quantity<=0){cartP.splice(index,1)}
         localStorage.setItem("cart",JSON.stringify(cartP));
         loadPage(cartP);
       });
@@ -101,7 +101,7 @@ document.querySelector(".order-summary").innerHTML = orderP;
 
     if(cartP.length-1===index){
   paymP+=`
-  <div class="payment-summary">
+  
           <div class="payment-summary-title">
             Order Summary
           </div>
@@ -134,7 +134,6 @@ document.querySelector(".order-summary").innerHTML = orderP;
           <button class="place-order-button button-primary">
             Place your order
           </button>
-        </div>
   `
 }
 
@@ -147,7 +146,7 @@ document.querySelector(".order-summary").innerHTML = orderP;
   document.querySelector(".payment-summary").innerHTML = paymP;
   }
 
-  function loadShipping(cartP){
+  function loadShipping(){
   let shiP =``;
   
     //?Shipping
@@ -232,9 +231,14 @@ document.querySelector(".order-summary").innerHTML = orderP;
 
   function loadPage(cartP) {
   loadHeader(cartP)
-  loadCartProducts(cartP);
-  loadPayment(cartP);
-  loadShipping();
+  if(cartP.length>0){
+      loadCartProducts(cartP);
+      loadPayment(cartP);
+      loadShipping();
+    }
+
+    console.log(cartP[0]);
+  
   }
   
 

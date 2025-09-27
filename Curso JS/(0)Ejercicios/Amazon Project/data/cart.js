@@ -1,6 +1,6 @@
 export const cart = localStorage.getItem("cart")  ? JSON.parse(localStorage.getItem("cart")) : [] ;
 
-export function addItem(productId,productName,quantity,productImage,productPrice){
+export function addItem(productId,productName,quantity,productImage,productPrice,productShiping){
     let matchingItem;
     cart.forEach((item) => {
             if (productId === item.productId) {
@@ -9,7 +9,7 @@ export function addItem(productId,productName,quantity,productImage,productPrice
         });
 
         if (matchingItem) {matchingItem.quantity += quantity;}
-        else {cart.push({productId,productName,quantity,productImage,productPrice});}
+        else {cart.push({productId,productName,quantity,productImage,productPrice,productShiping});}
     }
 
 
