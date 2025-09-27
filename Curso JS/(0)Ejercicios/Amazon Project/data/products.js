@@ -659,19 +659,75 @@ export const products = [
   }
 ];
 
-export function loadProducts(cartP){
-  let orderP = '';
+function getDeliveryDate(daysToAdd) {
+  const today = new Date();
+  const deliveryDate = new Date(today);
+  
+  // Agregar los días especificados
+  deliveryDate.setDate(today.getDate() + daysToAdd);
+  
+  const dayName = getWeekDay(deliveryDate.getDay());
+  const monthName = getMonthName(deliveryDate.getMonth());
+  const dayNumber = deliveryDate.getDate();
+  
+  return `${dayName}, ${monthName} ${dayNumber}`;
+}
 
-  let price=0;
-  let shipping =499/100; Number(shipping)
-  let total=0; let totaltax=0;
+function getDeliveryOptions(shipping) {
+
+  if(shipping===0){
+    return getDeliveryDate(7)
+  }
+  else if(shipping===1){
+    return getDeliveryDate(4)
+  }
+  else if(shipping===2)
+    return getDeliveryDate(0)
+  
+}
+
+function getWeekDay(dayIndex) {
+  const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  return dias[dayIndex];
+}
+function getMonthName(monthIndex) {
+  const meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+  return meses[monthIndex];
+}
+
+
+export function loadProducts(cartP){
+  
+  let orderP = '';
+  let paymP =``;
+
+  //?Shipping
+  let flag1 ="";
+  let flag2 ="";
+  let flag3 ="";
+  let shipping=  JSON.parse(localStorage.getItem("shipping"))
+  if(shipping===0)        {flag1='checked'}
+  else if(shipping===4.99){flag2='checked'}
+  else if(shipping===9.99){flag3='checked'}
+
+  //?Price
+  let priceItems=0;
+  let Tax=0;
+  let priceItemsWTax=0;
+  cartP.forEach((product,index) => {
+    priceItems+=(Number(cartP[index].productPrice) * Number(cartP[index].quantity)  );
+  })
+
+  //?Matematicas
+  Tax = priceItems*0.1;            //Valor de el impuesto
+  priceItemsWTax = priceItems+Tax; //Valor con Impuesto
 
 cartP.forEach((product,index) => {
 orderP += `
     <div class="cart-item-container">
-            <div class="delivery-date">
-              Delivery date: Tuesday, June 21
-            </div>
 
             <div class="cart-item-details-grid">
               <img class="product-image"
@@ -696,18 +752,59 @@ orderP += `
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+          
+`;
 
-              <div class="delivery-options">
+if(cartP.length-1===index){
+  paymP+=`
+  <div class="payment-summary">
+          <div class="payment-summary-title">
+            Order Summary
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Items (${cartP.length}):</div>
+            <div class="payment-summary-money">$ ${(priceItems/100).toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Estimated tax (10%):</div>
+            <div class="payment-summary-money">$ ${(Tax/100).toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row subtotal-row">
+            <div>Total before shipping:</div>
+            <div class="payment-summary-money">$ ${((Tax/100)+(priceItems/100)).toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Shipping &amp; handling:</div>
+            <div class="payment-summary-money">$ ${shipping}</div>
+          </div>
+
+          <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">$ ${((Tax/100)+(priceItems/100)+shipping).toFixed(2)}</div>
+          </div>
+
+          <button class="place-order-button button-primary">
+            Place your order
+          </button>
+        </div>
+
+        <div class="delivery-options">
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
                 <div class="delivery-option">
-                  <input type="radio" checked
+                  <input type="radio" ${flag1}
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-1" value ="1">
                   <div>
                     <div class="delivery-option-date">
-                      Tuesday, June 21
+                      ${getDeliveryOptions(0)}
                     </div>
                     <div class="delivery-option-price">
                       FREE Shipping
@@ -715,12 +812,12 @@ orderP += `
                   </div>
                 </div>
                 <div class="delivery-option">
-                  <input type="radio"
+                  <input type="radio" ${flag2}
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-1" value ="2">
                   <div>
                     <div class="delivery-option-date">
-                      Wednesday, June 15
+                      ${getDeliveryOptions(1)}
                     </div>
                     <div class="delivery-option-price">
                       $4.99 - Shipping
@@ -728,12 +825,12 @@ orderP += `
                   </div>
                 </div>
                 <div class="delivery-option">
-                  <input type="radio"
+                  <input type="radio" ${flag3}
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-1" value ="3">
                   <div>
                     <div class="delivery-option-date">
-                      Monday, June 13
+                      ${getDeliveryOptions(2)}
                     </div>
                     <div class="delivery-option-price">
                       $9.99 - Shipping
@@ -743,56 +840,14 @@ orderP += `
               </div>
             </div>
           </div>
-`;
-
-//Calculo de Precios iterados
-price+=((Number(cartP[index].productPrice))/100)*Number(cartP[index].quantity);
-total=Number(price)+shipping;
-totaltax=(total*0.1);
-
-
-if(cartP.length-1===index){
-  orderP+=`<div class="payment-summary">
-          <div class="payment-summary-title">
-            Order Summary
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Items (3):</div>
-            <div class="payment-summary-money">$${price.toFixed(2)}</div>
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$${shipping.toFixed(2)}</div>
-          </div>
-
-          <div class="payment-summary-row subtotal-row">
-            <div>Total before tax:</div>
-            <div class="payment-summary-money">$${total.toFixed(2)}</div>
-          </div>
-
-          <div class="payment-summary-row">
-            <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$${totaltax.toFixed(2)}</div>
-          </div>
-
-          <div class="payment-summary-row total-row">
-            <div>Order total:</div>
-            <div class="payment-summary-money">$${(Number(totaltax)+total).toFixed(2)}</div>
-          </div>
-
-          <button class="place-order-button button-primary">
-            Place your order
-          </button>
-        </div>
   `
 }
 
 });
 document.querySelector(".order-summary").innerHTML = orderP;
+document.querySelector(".payment-delivery-summary").innerHTML = paymP;
 
-document.querySelectorAll('.delete-quantity-link')
+  document.querySelectorAll('.delete-quantity-link')
     .forEach((button) => {
       button.addEventListener('click', () => {
         const productId = button.dataset.productId 
@@ -810,7 +865,6 @@ document.querySelectorAll('.delete-quantity-link')
       });
     }
   );
-  
   document.querySelectorAll('.update-quantity-link')
     .forEach((button,index) => {
       button.addEventListener('click', () => {
@@ -822,11 +876,27 @@ document.querySelectorAll('.delete-quantity-link')
         localStorage.setItem("cart",JSON.stringify(cartP));
         loadProducts(cartP)
         loadHeader(cartP)
-        
       });
     }
   );
 
+  document.querySelectorAll('.delivery-option-input')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        let value = button.value;
+        let shipping = 0;
+
+        if(value ==='1'){shipping=0}
+        else if(value === '2'){shipping = 4.99}
+        else if(value === '3'){shipping = 9.99}
+        
+        localStorage.setItem("shipping",(shipping))    
+        
+        loadProducts(cartP)
+        loadHeader(cartP)
+      });
+    }
+  );
 
 }
 
