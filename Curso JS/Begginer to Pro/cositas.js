@@ -1,3 +1,5 @@
+//!Empezar codigo de error con 4 significa que es problema de nosotros y con 5 problema de Backend 
+//!Aprender a Trabajar con Testing Frameworks
 //* Al trabajar con dinero en centavos se recomienda sumar los centavos y luego dividirlo entre 100 para mayor fiabilidad
 //  (2851 + 1890)/100
 

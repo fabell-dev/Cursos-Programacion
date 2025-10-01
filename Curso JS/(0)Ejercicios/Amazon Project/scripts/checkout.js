@@ -1,4 +1,3 @@
-
   let cartP = JSON.parse(localStorage.getItem("cart"));
   loadPage(cartP)
     
@@ -88,12 +87,12 @@ document.querySelector(".order-summary").innerHTML = orderP;
 
   function loadPayment(cartP){
     let paymP  = ``;
-    let shipping = loadShipping(); // !ojo
+    let shipping = cartP[0].productShiping;
 
-    //?Price
-  let priceItems=0;
-  let Tax=0;
-  let priceItemsWTax=0;
+      //?Price
+    let priceItems=0;
+    let Tax=0;
+    let priceItemsWTax=0;
 
 
   cartP.forEach((product,index) => {
@@ -101,7 +100,6 @@ document.querySelector(".order-summary").innerHTML = orderP;
 
     if(cartP.length-1===index){
   paymP+=`
-  
           <div class="payment-summary-title">
             Order Summary
           </div>
@@ -146,15 +144,18 @@ document.querySelector(".order-summary").innerHTML = orderP;
   document.querySelector(".payment-summary").innerHTML = paymP;
   }
 
-  function loadShipping(){
+
+  function loadShipping(cartP){
   let shiP =``;
   
     //?Shipping
   let flag1 = "";
   let flag2 = "";
   let flag3 = "";
-  let shipping =  JSON.parse(localStorage.getItem("shipping"))
-  if(     shipping === 0)   {flag1='checked'}
+  let shipping = cartP[0].productShiping;
+  
+  
+  if     (shipping === 0)   {flag1='checked'}
   else if(shipping === 4.99){flag2='checked'}
   else if(shipping === 9.99){flag3='checked'}
 
@@ -210,21 +211,19 @@ document.querySelector(".order-summary").innerHTML = orderP;
     .forEach((button) => {
       button.addEventListener('click', () => {
         let value = button.value;
-        let shipping = 0;
+        let valueShipping=0;
 
-        if(value ==='1'){shipping=0}
-        else if(value === '2'){shipping = 4.99}
-        else if(value === '3'){shipping = 9.99}
+        if     (value === '1'){valueShipping = 0}
+        else if(value === '2'){valueShipping = 4.99}
+        else if(value === '3'){valueShipping = 9.99}
         
-        localStorage.setItem("shipping",(shipping))    
+        cartP[0].productShiping=valueShipping;
+        localStorage.setItem("cart",JSON.stringify(cartP))
         loadPage(cartP);
 
       });
     }
   );
-  
-  return shipping;
-  
 
   }
 
@@ -234,12 +233,6 @@ document.querySelector(".order-summary").innerHTML = orderP;
   if(cartP.length>0){
       loadCartProducts(cartP);
       loadPayment(cartP);
-      loadShipping();
-    }
-
-    console.log(cartP[0]);
-  
+      loadShipping(cartP);
+    }  
   }
-  
-
-  
