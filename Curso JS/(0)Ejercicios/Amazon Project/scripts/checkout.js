@@ -1,4 +1,4 @@
-  let cartP = JSON.parse(localStorage.getItem("cart"));
+  let cartP = localStorage.getItem("cart")  ? JSON.parse(localStorage.getItem("cart")) : [];
   loadPage(cartP)
     
 

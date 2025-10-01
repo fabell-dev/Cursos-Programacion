@@ -1,7 +1,6 @@
 import {cart} from '../data/cart.js'
 import {products} from '../data/products.js'
 
-
 let productsHTML = '';
 products.forEach((product) => {
   productsHTML += `
@@ -49,29 +48,26 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary js-add-to-cart"
-      data-product-id="${product.id}"data-product-name="${product.name}" data-product-image="${product.image}" data-product-price="${product.priceCents}">
+      <button class="add-to-cart-button button-primary js-add-to-cart js-${product.id}"
+      data-product-id="${product.id}"data-product-name="${product.name}"data-product-image="${product.image}" data-product-price="${product.priceCents}">
         Add to Cart
       </button>
     </div>
   `;
 });
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
-cart.updateQuantity("1");  
+updateQuantity();
 
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
       const {productId} = button.dataset;
-      const {productName} = button.dataset;
-      const {productImage} = button.dataset; 
-      const {productPrice} = button.dataset;
-      const productShiping = 0;
-      let quantity =  Number(document.querySelector(`.js-selector-${productId}`).value);    
-      
-      let cartADD = {productId,productName,quantity,productImage,productPrice,productShiping}
-      cart.addItem(cartADD);
-      cart.updateQuantity(cartADD.productId);
-      localStorage.setItem("cart", JSON.stringify(cart.cartP))
+      cart.addItem(productId);
+      updateQuantity();
     });
   });
+
+//Actualizar Cantidad de Objetos que se depliega en la pagina
+function updateQuantity(){
+    document.querySelector('.js-cart-quantity').innerHTML = cart.cartP.length;
+  };
