@@ -1,4 +1,4 @@
-import {cart,addItem,updateQuantity} from '../data/cart.js'
+import {cart} from '../data/cart.js'
 import {products} from '../data/products.js'
 
 
@@ -57,8 +57,7 @@ products.forEach((product) => {
   `;
 });
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
-
-updateQuantity("1");  
+cart.updateQuantity("1");  
 
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
@@ -68,11 +67,11 @@ document.querySelectorAll('.js-add-to-cart')
       const {productImage} = button.dataset; 
       const {productPrice} = button.dataset;
       const productShiping = 0;
-      let quantity =  Number(document.querySelector(`.js-selector-${productId}`).value);      
-
-      addItem(productId,productName,quantity,productImage,productPrice,productShiping);
-      updateQuantity(productId);
-      localStorage.setItem("cart",JSON.stringify(cart))
+      let quantity =  Number(document.querySelector(`.js-selector-${productId}`).value);    
       
+      let cartADD = {productId,productName,quantity,productImage,productPrice,productShiping}
+      cart.addItem(cartADD);
+      cart.updateQuantity(cartADD.productId);
+      localStorage.setItem("cart", JSON.stringify(cart.cartP))
     });
   });
