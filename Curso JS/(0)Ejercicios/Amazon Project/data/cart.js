@@ -7,7 +7,7 @@ export const cart={
         let quantity =  Number(document.querySelector(`.js-selector-${ID}`).value); 
         let button =document.querySelector(`.js-${ID}`)
         
-        this.cartP.forEach((item) => {if (ID === item.productId) {matchingItem = item;}});
+        this.cartP.forEach((item) => {if (ID === item.productId) matchingItem = item;});
         
         if (matchingItem) {matchingItem.quantity += quantity;}
         else{

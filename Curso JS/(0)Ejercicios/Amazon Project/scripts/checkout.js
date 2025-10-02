@@ -17,36 +17,33 @@
   function loadCartProducts(cartP){
   let orderP = ``;
 
-cartP.forEach((product,index) => {
+cartP.forEach((product) => {
 orderP += `
     <div class="cart-item-container">
-
-            <div class="cart-item-details-grid">
-              <img class="product-image"
-                src="${product.productImage}">
-
-              <div class="cart-item-details">
-                <div class="product-name">
-                  ${product.productName}
-                </div>
-                <div class="product-price">
-                  $${((product.productPrice/100)*product.quantity).toFixed(2) }
-                </div>
-                <div class="product-quantity">
-                  <span>
-                    Quantity: <input type="number" class="quantity-label quantity-label-${product.productId}" value="${product.quantity}"></input>
-                  </span>
-                  <button class="link-${product.productId} update-quantity-link link-primary" data-product-id="${product.productId}">
-                    Update
-                  </button>
-                  <button class="delete-quantity-link link-primary" data-product-id="${product.productId}">
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
+      <div class="cart-item-details-grid">
+        <img class="product-image"
+          src="${product.productImage}"
+        <div class="cart-item-details">
+          <div class="product-name">
+            ${product.productName}
           </div>
-          
+          <div class="product-price">
+            $${((product.productPrice/100)*product.quantity).toFixed(2) }
+          </div>
+          <div class="product-quantity">
+            <span>
+              Quantity: <input type="number" class="quantity-label quantity-label-${product.productId}" value="${product.quantity}"></input>
+            </span>
+            <button class="link-${product.productId} update-quantity-link link-primary" data-product-id="${product.productId}">
+              Update
+            </button>
+            <button class="delete-quantity-link link-primary" data-product-id="${product.productId}">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>    
 `;
 
 });
@@ -56,11 +53,8 @@ document.querySelector(".order-summary").innerHTML = orderP;
     .forEach((button) => {
       button.addEventListener('click', () => {
         const productId = button.dataset.productId 
+        cartP.forEach((value,index)=>{if(value.productId===productId){cartP.splice(index,1)}})
 
-        cartP.forEach((value,index)=>{
-          if(value.productId===productId){cartP.splice(index,1)}
-        })
-        
         localStorage.setItem("cart",JSON.stringify(cartP));
         cartP = JSON.parse(localStorage.getItem("cart"));
         loadPage(cartP);
@@ -73,8 +67,7 @@ document.querySelector(".order-summary").innerHTML = orderP;
       button.addEventListener('click', () => {
         const productId = button.dataset.productId 
         let quantity =  Number(document.querySelector(`.quantity-label-${productId}`).value)
-        
-        cartP[index].quantity =quantity;
+        cartP[index].quantity = quantity;
         if(quantity<=0){cartP.splice(index,1)}
         localStorage.setItem("cart",JSON.stringify(cartP));
         loadPage(cartP);
