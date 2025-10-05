@@ -1,7 +1,8 @@
 import {cart} from '../data/cart.js'
   
 let cartP = localStorage.getItem("cart")  ? cart.getFromStorage() : [];
-loadPage(cartP)
+loadPage(cartP);
+
 
 function loadHeader(cartP){
   if(cart.Empty()){
